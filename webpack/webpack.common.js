@@ -18,11 +18,30 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(scss|css)$/,
-                use: [
-                    'style-loader', 
-                    {loader: 'css-loader'},
-                    {loader: 'sass-loader'},
+                test: /\.(sa|sc|le|c)ss$/,
+                oneOf: [
+                  {
+                    test: /\.module\.(sa|sc|le|c)ss$/,
+                    use: [
+                      'style-loader',
+                      {
+                        loader: 'css-loader',
+                        options: {
+                          modules: true,
+                        },
+                      },
+                      'sass-loader',
+                      'less-loader',
+                    ],
+                  },
+                  {
+                    use: [
+                      'style-loader',
+                      'css-loader',
+                      'sass-loader',
+                      'less-loader',
+                    ],
+                  },
                 ],
             },
             {
